@@ -1,0 +1,59 @@
+// Button
+.btn-border { 
+    cursor: pointer;
+    @include midflex; 
+    @include text('rb', 14px, white, uppercase, .2em);
+    border: 1px solid white;
+    width: 250px;
+    height: 50px;
+}
+.btn { 
+    cursor: pointer;
+    width: 150px + $marginleftBtn;
+    height: 20px;
+    @include text('rb', 14px, black, uppercase, 0.2rem);
+}
+
+// Section component
+.title {
+    @include text('rb', 40px, black, uppercase, 0.07rem);
+    line-height: 83px;
+}
+.des {
+    @include text('rg', 16px, black, none, 0.025rem);
+    line-height: 22px;
+}
+
+
+// active
+.active {
+    background-color: $main-cl-yellow !important;
+}
+.activeColor {
+    color: $main-cl-yellow !important;
+}
+.activeBlock {
+    display: block !important;
+}
+.activeDs {
+    transform: translateY(0) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+.activeSlider {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+.activeBtn { 
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+.activeHover { 
+    color: white !important;
+    &:after {
+        width: 100% !important;
+    }
+}
+.activeMenuRes {
+    transform: translateY(0) !important;
+}

@@ -1,0 +1,247 @@
+footer {
+    @include midflex;
+    height: 57px;
+    background: #000;
+    margin-top: $margin-top-section;
+    .footer {
+        position: relative;
+        @include midflex;
+        justify-content: space-between;
+        &__text {
+            @include text('rg', 12px, white, none, .05rem);
+            opacity: .7;
+        }
+        .img {
+            @include center;
+            width: 175px;
+            img { @include img }
+        }
+        .bttBtn {
+            cursor: pointer;
+            transition: .2s;
+            &:hover {
+                color: $main-cl-yellow; 
+                transition: .2s;
+            }
+        }
+    }
+    @include desktop-large {
+        margin-top: $margin-top-section;
+        height: 57px;
+        .footer {
+            &__text {
+                font-size: 12px;
+            }
+            .img {
+                width: 175px;
+            }
+            .bttBtn {
+                font-size: 12px;
+            }
+        }
+    }
+    @include desktop {
+        margin-top: $margin-top-section;
+        height: 57px;
+        .footer {
+            &__text {
+                font-size: 11px;
+            }
+            .img {
+                width: 140px;
+            }
+            .bttBtn {
+                font-size: 11px;
+            }
+        }
+    }
+    @include mobile {
+        margin-top: $margin-top-section;
+        height: 57px;
+        .footer {
+            &__text, .bttBtn {
+                width: 70px;
+                text-align: center;
+                font-size: 9px;
+            }
+            .img {
+                width: 100px;
+            }
+        }
+    }
+}
+
+.fixedBtn {
+    --tl: 40px;
+    position: fixed;
+    bottom: var(--tl);
+    right: var(--tl);
+    cursor: pointer;
+    @include text('rb', 12px, white, uppercase, .05rem);
+    @include midflex;
+    @include hidden;
+    width: 100px;
+    height: 30px;
+    border-radius: 3px;
+    
+    background: $main-cl-yellow;
+    transition: .2s ease-in;
+    &:hover {
+        background: $text-cl-header;
+        transition: .2s ease-in;
+    }
+    @include desktop-large {
+        --tl: 40px;
+        font-size: 12px;
+        bottom: var(--tl);
+        right: var(--tl);
+        width: 100px;
+        height: 30px;
+    }
+    @include desktop {
+        --tl: 30px;
+        font-size: 11px;
+        bottom: var(--tl);
+        right: var(--tl);
+        width: 95px;
+        height: 30px;
+    }
+    @include tablet {
+        --tl: 20px;
+        font-size: 10px;
+        bottom: var(--tl);
+        right: var(--tl);
+        width: 85px;
+        height: 30px;
+    }
+    @include mobile {
+        --tl: 5px;
+        font-size: 8px;
+        bottom: var(--tl);
+        right: var(--tl);
+        width: 70px;
+        height: 25px;
+    }
+}
+
+.quality-playVideo {
+    position: fixed;
+    display: none;
+    width: 100vw;
+    height: 100vh;
+    &:after {
+        content: '';
+        display: block;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: black;
+        opacity: .5;
+        z-index: 1000;
+    }
+    &__video {
+        @include centerFixed;
+        background: #000;
+        width: 60%;
+        padding-top: 30%; 
+        overflow: hidden;
+        z-index: 1001;
+        animation: videoBotToTop 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        @keyframes videoBotToTop {
+            from { top: 85%; }
+            to { top: 50%; }
+        }
+        iframe {
+            @include center;
+            width: 100%;
+            height: 100%;
+        }
+        .closeBtn {
+            display: block;
+            position: absolute;
+            top: 0;
+            right: 0;
+            cursor: pointer;
+            width: 15px;
+            height: 15px;
+            font-weight: bold;
+            text-align: center;
+            
+            background: white;
+            transition: .1s ease-in;
+            &:hover {
+                transition: .1s ease-in;
+                background: black;
+                color: white;
+            }
+        }
+    }
+}
+
+.menu-pop-up {
+    @include midflex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;
+    z-index: 2000;
+    transform: translateX(100%);
+    transition: transform .3s  ease-in-out;
+    ul {
+        @include text('rb', 30px, $text-cl-header, uppercase, .2rem);
+        @include midflex;
+        flex-direction: column;
+        gap: 30px;
+        width: 250px;
+        height: 550px;
+        li {
+            height: 42px;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            &:after {
+                content: '';
+                display: block;
+                @include posAbTopLeft;
+                width: 100%;
+                height: 100%;
+                border-bottom: 2px solid $main-cl-yellow;
+                
+                transform: scaleX(0);
+                transform-origin: right;
+                transition: transform 0.3s ease-out;
+            }
+            &:hover {
+                color: white;   
+                &:after {
+                    transform: scaleX(1);
+                    transform-origin: left;
+                    transition: transform .3s ease-out;
+                }
+            }
+        }
+    }
+    .close-menu {
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        @include midflex;
+        @include text('rb', 40px, black, uppercase, none);
+        cursor: pointer;
+        width: 50px;
+        height: 50px;
+        border-radius: 3px;
+        
+        background: $text-cl-header;
+        transition: all .2s ease-in-out;
+        &:hover {
+            color: white;
+            transition: all .2s ease-in-out;
+            background: $main-cl-yellow;
+        }
+    }
+}

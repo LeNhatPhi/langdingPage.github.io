@@ -1,0 +1,555 @@
+header {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    .slider {
+        &__item {
+            @include posAbTopLeft;
+            @include hidden; 
+            transition: opacity .2s ease-in;
+            .img {
+                width: 100vw;
+                height: 100vh;
+                background-position: center;
+                background-size: cover;
+                overflow: hidden;
+                img{ @include img }
+            }
+            .wooder-title {
+                @include midflex;
+                @include center;
+                flex-direction: column;
+                gap: 40px;
+                &__title {
+                    @include text('rb', 83px, $main-cl-yellow, uppercase, .2em);
+                }
+                &__lm {
+                    position: relative;
+                    i {
+                        padding-left: 28px;
+                        img {
+                            width: 30px;
+                        }    
+                    }
+                    &:before {
+                        content: "";
+                        display: block;
+                        @include posAbTopLeft;
+                        background-color: $main-cl-yellow;
+                        width: 100%;
+                        height: 100%;
+                        z-index: -1;
+        
+                        transform: scaleX(0);
+                        transform-origin: right;
+                        transition: transform .3s cubic-bezier(.13,.31,.62,.3);
+                    }
+                    &:hover {
+                        &:before {
+                            transform: scaleX(1);
+                            transform-origin: left;
+                            transition: transform .3s cubic-bezier(.13,.31,.62,.3);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .header-nav {
+        @include midflex;
+        @include posAbTopLeft;
+        height: 85px;
+        z-index: 10;
+        transition: .3s ease-in-out;
+        .container-fluid {
+            @include midflex;
+            justify-content: space-between;
+            .logo-nav {
+                width: 175px;
+                margin-left: $pd-header-nav;
+                img { @include img }
+            }
+            .menu-nav {
+                @include center;
+                @include midflex;
+                gap: 50px;
+                li {
+                    position: relative;
+                    @include midflex;
+                    @include text('rb', 15px, $text-cl-header, uppercase, none);
+                    cursor: pointer;
+                    height: 30px;
+                    transition: .3s ease-out;
+                    &:after {
+                        content: "";
+                        @include center;
+                        height: 100%;
+                        width: 0;   
+                        border-bottom: 2px solid $main-cl-yellow;
+                        transition: .3s ease-out;
+                    }
+                    &:hover {
+                        color: white;
+                        transition: .3s ease-out;
+                        &:after {
+                            width: 100%;
+                            transition: .3s ease-out;
+                        }
+                    }
+                }
+            }
+            .lang {
+                @include midflex;
+                justify-content: space-between;
+                height: 30px;
+                margin-right: $pd-header-nav;
+                gap: 10px;
+                &__menuRes {
+                    display: none;
+                    position: relative;
+                    cursor: pointer;
+                    width: 25px;
+                    height: 20px;
+                    border-top: 2px solid $main-cl-yellow;
+                    border-bottom: 2px solid $main-cl-yellow;
+                    &:before {
+                        @include center;
+                        content: "";
+                        display: block;
+                        width: 100%;
+                        height: 1px;
+                        background: $main-cl-yellow;
+                    } 
+                }
+                &__langPart {
+                    position: relative;
+                    @include text('rb', 15px, $text-cl-header, none, none);
+                    @include midflex;
+                    justify-content: space-between;
+                    cursor: pointer;
+                    gap: 5px;
+                    i { margin-bottom: 4px; }
+                    .options {
+                        position: absolute;
+                        left: 0;
+                        @include hidden;
+                        overflow: hidden;
+                        overflow-y: scroll;
+                        height: $height-lang;
+                        bottom: -$height-lang;
+                        transform: translateY(-30%);
+                        transition: .3s ease;
+                        li {
+                            padding: 2px 0;
+                            &:hover { 
+                                color: white; 
+                                transition: .3s ease;
+                            }
+                        }
+                    }
+                }
+                .lang__langPart, .lang__langPart .options {
+                    background: transparent;
+                    width: 35px;
+                }
+            }
+        } 
+    }
+    .wooder-paging {
+        position: absolute;
+        bottom: 15px;
+        .container-fluid {
+            @include midflex;
+            justify-content: space-between;
+            height: 45px;
+            .number-paging {
+                @include midflex;
+                gap: 8px;
+                padding-left: $pd-header-nav;
+                &__number {
+                    @include midflex;
+                    @include text('rb', 48px, $main-cl-yellow, uppercase, .1rem);
+                    width: 62px;
+                }
+                &__dots {
+                    @include midflex;
+                    gap: 7px;
+                    cursor: pointer;
+                    li {
+                        width: $dot-header;
+                        height: $dot-header;
+                        background-color: $text-cl-header; 
+                        border-radius: 50%;
+                    }
+                }
+            }
+            .mouse-paging {     
+                @include center;
+                @include midflex;
+                flex-direction: column;
+                gap: 15px;
+                padding-bottom: 55px;
+            }
+            .arrow-paging {
+                display: flex;
+                padding-right: $pd-header-nav;
+                &__btn {
+                    position: relative;
+                    cursor: pointer;
+                    height: 40px;
+                    width: 55px;
+                    border: 1px solid white;
+                    img { @include center;}
+                }
+                .--prev {
+                    background: linear-gradient(to right, transparent 50%, $main-cl-yellow 50%) left;
+                    background-size: 200%;
+                    transition: all .3s ease-out;
+                    &:hover {
+                        background-position: right;
+                        background-size: 200%;
+                        transition: all .3s ease-out;
+                    }
+                }
+                .--next {
+                    background: linear-gradient(to left, transparent 50%, $main-cl-yellow 50%) right;
+                    background-size: 200%;
+                    transition: all .2s ease-out;
+                    &:hover {
+                        background-position: left;
+                        background-size: 200%;
+                        transition: all .2s ease-out;
+                    }
+                }
+            }
+        }  
+    }
+
+    @include desktop-large {
+        .slider {
+            &__item {
+                .wooder-title {
+                    gap: 40px;
+                    &__title {
+                        font-size: 83px;
+                    }
+                    &__lm {
+                        font-size: 14px;
+                        width: 250px;
+                        height: 50px;
+                        i {
+                            padding-left: 28px;
+                            img {width: 30px;}    
+                        }
+                    }
+                }
+            }
+        }
+        .header-nav {    
+            height: 85px;
+            .container-fluid {
+                .logo-nav { 
+                    width: 175px;
+                    margin-left: $pd-header-nav;
+                }
+                .menu-nav {
+                    gap: 50px;
+                    li { height: 30px; }
+                }
+                .lang {
+                    margin-right: $pd-header-nav;
+                    &__langPart {
+                        gap: 5px;
+                        i { margin-bottom: 4px; }
+                        .options {
+                            bottom: -$height-lang;
+                            height: $height-lang;
+                        }
+                    }
+                    .lang__langPart, .lang__langPart .options { width: 35px; }
+                }
+                .menu-nav li, .lang__langPart { font-size: 15px; }
+            } 
+        }
+        .wooder-paging {
+            bottom: 15px;
+            .container-fluid {
+                height: 45px;
+                .number-paging {
+                    padding-left: $pd-header-nav;
+                    gap: 8px;
+                    &__number {
+                        width: 62px;
+                        font-size: 48px;
+                    }
+                    &__dots {
+                        gap: 7px;
+                        li {
+                            width: $dot-header;
+                            height: $dot-header;
+                        }
+                    }
+                }
+                .mouse-paging {     
+                    gap: 15px;
+                    padding-bottom: 55px;
+                }
+                .arrow-paging {
+                    padding-right: $pd-header-nav;
+                    &__btn {
+                        height: 40px;
+                        width: 55px;
+                        img { width: 30px; }
+                    }
+                }
+            }  
+        }
+    }
+    @include desktop {
+        .slider {
+            &__item {
+                .wooder-title {
+                    gap: 30px;
+                    &__title {
+                        font-size: 73px;
+                    }
+                    &__lm {
+                        font-size: 13px;
+                        width: 230px;
+                        i {
+                            padding-left: 22px;
+                            img {width: 27px;}    
+                        }
+                    }
+                }
+            }
+        }
+        $pd-header-nav: 20px;
+        .header-nav {    
+            height: 75px;
+            .container-fluid {
+                .logo-nav { 
+                    width: 140px;
+                    margin-left: $pd-header-nav;
+                }
+                .menu-nav {
+                    gap: 35px;
+                    li { height: 25px; }
+                }
+                .lang {
+                    margin-right: $pd-header-nav;
+                    &__langPart {
+                        gap: 4px;
+                        i { margin-bottom: 3px; }
+                        .options {
+                            bottom: -$height-lang;
+                            height: $height-lang;
+                        }
+                    }
+                    .lang__langPart, .lang__langPart .options { width: 30px; }
+                }
+                .menu-nav li, .lang__langPart { font-size: 14px; }
+            } 
+        }
+        .wooder-paging {
+            bottom: 15px;
+            .container-fluid {
+                height: 40px;
+                .number-paging {
+                    padding-left: $pd-header-nav;
+                    gap: 8px;
+                    &__number {
+                        width: 55px;
+                        font-size: 42px;
+                    }
+                    &__dots {
+                        gap: 6px;
+                        li {
+                            width: $dot-header;
+                            height: $dot-header;
+                        }
+                    }
+                }
+                .mouse-paging {     
+                    gap: 13px;
+                    padding-bottom: 55px;
+                }
+                .arrow-paging {
+                    padding-right: $pd-header-nav;
+                    &__btn {
+                        height: 35px;
+                        width: 50px;
+                    }
+                }
+            }  
+        }
+    }
+    @include tablet {
+        .slider {
+            &__item {
+                .wooder-title {
+                    gap: 25px;
+                    &__title {
+                        font-size: 65px;
+                    }
+                    &__lm {
+                        font-size: 13px;
+                        width: 215px;
+                        height: 45px;
+                        i {
+                            padding-left: 20px;
+                            img {width: 25px;}    
+                        }
+                    }
+                }
+            }
+        }
+        $pd-header-nav: 15px;
+        .header-nav {    
+            height: 70px;
+            .container-fluid {
+                .logo-nav { 
+                    width: 100px;
+                    margin-left: $pd-header-nav;
+                }
+                .menu-nav {
+                    gap: 20px;
+                    li { height: 22px; }
+                }
+                .lang {
+                    margin-right: $pd-header-nav;
+                    &__langPart {
+                        gap: 4px;
+                        i { margin-bottom: 3px; }
+                        .options {
+                            bottom: -$height-lang;
+                            height: $height-lang;
+                        }
+                    }
+                    .lang__langPart, .lang__langPart .options { width: 30px; }
+                }
+                .menu-nav li, .lang__langPart { font-size: 13px; }
+            } 
+        }
+        .wooder-paging {
+            bottom: 13px;
+            .container-fluid {
+                height: 40px;
+                .number-paging {
+                    padding-left: $pd-header-nav;
+                    gap: 7px;
+                    &__number {
+                        width: 45px;
+                        font-size: 37px;
+                    }
+                    &__dots {
+                        gap: 5px;
+                        li {
+                            width: $dot-header;
+                            height: $dot-header;
+                        }
+                    }
+                }
+                .mouse-paging {     
+                    gap: 13px;
+                    padding-bottom: 55px;
+                }
+                .arrow-paging {
+                    padding-right: $pd-header-nav;
+                    &__btn {
+                        height: 30px;
+                        width: 45px;
+                        img { width: 25px; }
+                    }
+                }
+            }  
+        }
+    }
+    @include mobile {
+        .slider {
+            &__item {
+                .wooder-title {
+                    gap: 22px;
+                    &__title {
+                        font-size: 51px;
+                    }
+                    &__lm {
+                        font-size: 11px;
+                        width: 160px;
+                        height: 35px;
+                        i {
+                            padding-left: 15px;
+                            img {width: 20px;}    
+                        }
+                    }
+                }
+            }
+        }
+        $pd-header-nav: 13px;
+        .header-nav {    
+            height: 70px;
+            .container-fluid {
+                .logo-nav { 
+                    width: 125px;
+                    margin-left: $pd-header-nav;
+                }
+                .menu-nav {
+                    display: none;
+                    gap: 20px;
+                    li { height: 22px; }
+                }
+                .lang {
+                    margin-right: $pd-header-nav;
+                    &__menuRes {
+                        display: block;
+                    }
+                    &__langPart {
+                        gap: 0;
+                        i { margin-bottom: 3px; }
+                        .options {
+                            bottom: -$height-lang;
+                            height: $height-lang;
+                        }
+                    }
+                    .lang__langPart, .lang__langPart .options { width: 25px; }
+                }
+                .menu-nav li, .lang__langPart { font-size: 12px; }
+            } 
+        }
+        $dot-header: 7px;
+        .wooder-paging {
+            bottom: 12px;
+            .container-fluid {
+                height: 40px;
+                .number-paging {
+                    padding-left: $pd-header-nav;
+                    gap: 6px;
+                    &__number {
+                        width: 35px;
+                        font-size: 32px;
+                    }
+                    &__dots {
+                        gap: 4px;
+                        li {
+                            width: $dot-header;
+                            height: $dot-header;
+                        }
+                    }
+                }
+                .mouse-paging {     
+                    gap: 11px;
+                    padding-bottom: 55px;
+                }
+                .arrow-paging {
+                    padding-right: $pd-header-nav;
+                    &__btn {
+                        height: 22px;
+                        width: 33px;
+                        img { width: 20px; }
+                    }
+                }
+            }  
+        }
+    }
+}

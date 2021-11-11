@@ -1,0 +1,63 @@
+@font-face {
+    font-family: 'rb';
+    src: url('../fonts/ProximaNovaA-Extrabld.woff2') format('woff2'),
+        url('../fonts/ProximaNovaA-Extrabld.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'rb';
+    src: url('../fonts/ProximaNova-Bold.woff2') format('woff2'),
+        url('../fonts/ProximaNova-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'rg';
+    src: url('../fonts/ProximaNova-Regular.woff2') format('woff2'),
+        url('../fonts/ProximaNova-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+// -----------------------Font------------------------------
+
+* {
+    box-sizing: border-box;
+}
+body, html {
+    font-family: "rg", Arial, Helvetica, sans-serif;
+    width: 100%;
+    height: 100%;
+}
+section {
+    width: 100vw;
+    overflow: hidden;
+}
+
+// ---------------------Container-----------------------
+.container {
+    @include desktop-large {
+        width: 975px; 
+    }
+    @include desktop {
+        width: 890px; 
+    }
+    @include tablet {
+        width: 690px; 
+    }
+    @include mobile {
+        width: 315px; 
+    }
+}
+.container-fluid { width: 100vw; }
+
+// section margin-top 
+// 1600: 90
+// 1200: 75
+// 992: 65
+// 45
